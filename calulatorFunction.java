@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class calulatorFunction {
+public class CalulatorFunction {
     public static void calc(Double a, Double b, char op){
         Double out;
         if(op=='+'){
