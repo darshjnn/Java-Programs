@@ -1,5 +1,3 @@
-package Sorting;
-
 public class SelectionSort {
     
     public static void PrintArr(int arr[]){
