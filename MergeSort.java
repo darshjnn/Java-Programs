@@ -1,3 +1,4 @@
+// Time Complexity O(nlogn)
 public class MergeSort {
     public static void conquer(int arr[], int si, int mid, int ei) {
         int indx1 = si;
@@ -5,6 +6,7 @@ public class MergeSort {
         int merged[] = new int[ei - si + 1];
         
         int x = 0;
+        //O(n)
         while (indx1 <= mid && indx2 <= ei) {
             if (arr[indx1] >= arr[indx2]) {
                 merged[x++] = arr[indx2++];
@@ -27,6 +29,7 @@ public class MergeSort {
     }
     
     public static void divide(int arr[], int si, int ei) {
+        //O(logn)
         if (si >= ei) {
             return;
         }
