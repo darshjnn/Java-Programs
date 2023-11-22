@@ -1,3 +1,6 @@
+//Time Complexity: Worst = O(n^2);    Average: O(nlogn)
+//IMPORTANT: Worst occurs when pivot is always the SMALLEST or the LARGEST elemnt.
+
 public class QuickSort {
     public static int partition(int arr[], int low, int high){
         int pivot = arr[high];
