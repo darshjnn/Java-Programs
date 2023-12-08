@@ -52,8 +52,7 @@ public class SingleLL {
             System.out.println("Invalid index");
             return;
         }
-        
-        size++;
+
         Node newNode = new Node(data);
         if (head == null || index == 0) {
             newNode.next = head;
@@ -63,7 +62,6 @@ public class SingleLL {
         
         Node currNode = head;
         for (int i = 0 ; i < size; i++) {
-            System.out.println(i);
             if (i == index) {
                 Node nextNode = currNode.next;
                 currNode.next = newNode;
