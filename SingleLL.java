@@ -8,6 +8,7 @@ public class SingleLL {
     SingleLL() {
         this.size = 0;
     }
+    
     public class Node {
         String data;
         Node next;
@@ -46,13 +47,13 @@ public class SingleLL {
         currNode.next = newNode;
     }
     
-    //Adding element in middle
+    // Adding element in middle
     public void add(String data, int index) {
-        if (index < 0 || index > size){
+        if (index < 0 || index > size) {
             System.out.println("Invalid index");
             return;
         }
-
+        
         Node newNode = new Node(data);
         if (head == null || index == 0) {
             newNode.next = head;
@@ -61,7 +62,7 @@ public class SingleLL {
         }
         
         Node currNode = head;
-        for (int i = 0 ; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             if (i == index) {
                 Node nextNode = currNode.next;
                 currNode.next = newNode;
@@ -88,9 +89,9 @@ public class SingleLL {
         System.out.println();
     }
     
-    //Delete First Node
+    // Delete First Node
     public void deleteFirst() {
-        if (head == null){
+        if (head == null) {
             System.out.println("List is empty");
             return;
         }
@@ -98,31 +99,60 @@ public class SingleLL {
         head = head.next;
     }
     
-    //Delete Lasst Node
+    // Delete Last Node
     public void deleteLast() {
-        if (head == null){
+        if (head == null) {
             System.out.println("List is empty");
             return;
         }
         
         size--;
-        if (head.next == null){
+        if (head.next == null) {
             head = null;
             return;
         }
         
         Node secondLastNode = head;
         Node lastNode = head.next;
-        while (lastNode.next != null){
+        while (lastNode.next != null) {
             lastNode = lastNode.next;
             secondLastNode = secondLastNode.next;
         }
         secondLastNode.next = null;
     }
     
-    //Return size
+    // Return size
     public int getsize() {
         return size;
+    }
+    
+    // Reverse a Linked List using ITERATION
+    public void reverseListIterate() {
+        Node prevNode = head;
+        Node currNode = head.next;
+        while (currNode != null) {
+            Node nextNode = currNode.next;
+            currNode.next = prevNode;
+            
+            //update
+            prevNode = currNode;
+            currNode = nextNode; 
+        }
+        head.next = null;
+        head = prevNode;
+    }
+    
+    // Reverse a Linked List using RECURSIVELY
+    public Node reverseListRecurse(Node head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        
+        Node newHead = reverseListRecurse(head.next);
+        
+        head.next.next = head;
+        head.next = null;
+        return newHead;
     }
     
     public static void main(String args[]) {
@@ -138,12 +168,18 @@ public class SingleLL {
         // list.printList();
         
         // list.deleteLast();
-        // list.printList();   
-        // System.out.println(list.getsize());   
+        // list.printList();
+        // System.out.println(list.getsize());
         // list.addLast("list");
         // System.out.println(list.getsize());
-
+        
         // list.add("dj", 2);
         // list.printList();
+        
+        // System.out.println(list.getsize());
+        
+        // list.reverseListIterate();
+        list.head = list.reverseListRecurse(list.head);
+        list.printList();
     }
 }
