@@ -230,10 +230,10 @@ public class CreatingBT {
         
         // System.out.println(diameter(root));
         
-        // System.out.println(diameter2(root).diameter);
-        // System.out.println(diameter2(root).height);
+        System.out.println(diameter2(root).diameter);
+        System.out.println(diameter2(root).height);
         
-        // System.out.println(isSubtree(root, subroot));
+        System.out.println(isSubtree(root, subroot));
 
     }
 }
