@@ -74,10 +74,10 @@ public class Graphs {
         
         // weightGraph(graph);
         // System.out.println();
-        // //Print weight neighbour's of any vertex
+        // //Print destination neighbour's of any vertex
         // for (int i = 0; i < graph[2].size(); i++) {
         //     Edge e = graph[2].get(i);
-        //     System.out.println(e.destination + " " + e.weight);
+        //     System.out.println(e.destination + " " + e.destination);
         // }
     }
 }

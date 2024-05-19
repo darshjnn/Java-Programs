@@ -73,18 +73,18 @@ public class GraphBFS {
             }
         }
     }
-
+    
     //BFS for Disconnected Graph
     public static void bfsDis(ArrayList<Edge> graph[], int V, boolean vis[], int start) {
         Queue<Integer> q = new LinkedList<>();
         q.add(start);
-
+        
         while (!q.isEmpty()) {
             int curr = q.remove();
             if (vis[curr] == false) {
                 System.out.print(curr + " ");
                 vis[curr] = true;
-
+                
                 for (int i = 0; i < graph[curr].size(); i++) {
                     q.add(graph[curr].get(i).destination);
                 }
@@ -93,7 +93,7 @@ public class GraphBFS {
     }
     
     public static void main(String[] args) {
-
+        
         /* 
         *   1 --- 3
         *  /      | \
@@ -101,19 +101,21 @@ public class GraphBFS {
         *  \      | /
         *   2 --- 4
         */ 
-
-        // int V = 7;
-        // ArrayList<Edge> g[] = new ArrayList[V];
-        // unweightGraph(g);
-        // bfs(g, V);
-        // System.out.println();
-
-        // // For Disconnected Graph
-        // boolean vis[] = new boolean[V];
-        // for (int i = 0; i < V; i++) {
-        //     if (vis[i] == false) {
-        //         bfsDis(g, V, vis, i);
-        //     }
-        // }
-    }
-}
+        
+         int V = 7;
+         @SuppressWarnings("unchecked")
+         ArrayList<Edge>[] g = new ArrayList[V];
+         unweightGraph(g);
+         bfs(g, V);
+         System.out.println();
+        
+         // For Disconnected Graph
+         boolean vis[] = new boolean[V];
+         for (int i = 0; i < V; i++) {
+                 if (vis[i] == false) {
+                         bfsDis(g, V, vis, i);
+                     }
+                 }
+            }
+        }
+        

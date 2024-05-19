@@ -1,3 +1,5 @@
+package LeetCode;
+
 import java.util.ArrayList;
 
 class Solution {
@@ -10,11 +12,11 @@ class Solution {
         }
 
         // vertical
-        for (int i = 0; i < board.length; i++) {
-            if (board[i][col] == 'Q') {
-                return false;
-            }
-        }
+	    for (char[] chars : board) {
+		    if (chars[col] == 'Q') {
+			    return false;
+		    }
+	    }
 
         // upper left
         int r = row;
@@ -51,19 +53,19 @@ class Solution {
     }
 
     public void saveBoard(char[][] board, ArrayList<ArrayList<String>> allBoards) {
-        String row = "";
+        StringBuilder row;
         ArrayList<String> newBoard = new ArrayList<>();
-
-        for (int i = 0; i < board.length; i++) {
-            row = "";
-            for (int j = 0; j < board[0].length; j++) {
-                if (board[i][j] == 'Q')
-                    row += 'Q';
-                else
-                    row += '.';
-            }
-            newBoard.add(row);
-        }
+	    
+	    for (char[] chars : board) {
+		    row = new StringBuilder();
+		    for (int j = 0; j < board[0].length; j++) {
+			    if (chars[j] == 'Q')
+				    row.append('Q');
+			    else
+				    row.append('.');
+		    }
+		    newBoard.add(row.toString());
+	    }
 
         allBoards.add(newBoard);
     }
@@ -93,7 +95,7 @@ class Solution {
 }
 
 public class NQueensProblem {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Solution a = new Solution();
         System.out.println(a.solveNQueens(4));
     }

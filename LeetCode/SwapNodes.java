@@ -16,10 +16,11 @@ Input: head = [1]
 Output: [1]
 
 */
+package LeetCode;
 
 // Definition for singly-linked list.
 class SwapNodes {
-    public class ListNode {
+    public static class ListNode {
         int val;
         ListNode next;
 

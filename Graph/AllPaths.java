@@ -73,6 +73,7 @@ public class AllPaths {
         */ 
         
         int V = 7;
+        @SuppressWarnings("unchecked")
         ArrayList<Edge> graph[] = new ArrayList[V];
         unweightGraph(graph);
 

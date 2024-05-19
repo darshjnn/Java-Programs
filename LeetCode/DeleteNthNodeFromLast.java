@@ -32,20 +32,20 @@ public class DeleteNthNodeFromLast {
     public class ListNode {
         int val;
         ListNode next;
-        
+
         ListNode() {
         }
-        
+
         ListNode(int val) {
             this.val = val;
         }
-        
+
         ListNode(int val, ListNode next) {
             this.val = val;
             this.next = next;
         }
     }
-    
+
     public ListNode removeNthFromEnd(ListNode head, int n) {
         int sz = -1;
         ListNode currNode = new ListNode(0);
@@ -55,7 +55,7 @@ public class DeleteNthNodeFromLast {
             sz++;
             currNode = currNode.next;
         }
-        
+
         // main
         ListNode dummy = new ListNode(0);
         dummy.next = head;
@@ -71,8 +71,8 @@ public class DeleteNthNodeFromLast {
             }
             dummy.next = dummy.next.next;
         }
-        
+
         return head;
     }
-    
+
 }
