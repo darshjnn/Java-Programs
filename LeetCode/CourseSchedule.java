@@ -21,6 +21,8 @@ course 1. So it is impossible.
 
 */
 
+package LeetCode;
+
 import java.util.*;
 
 public class CourseSchedule {

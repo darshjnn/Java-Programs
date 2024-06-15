@@ -20,6 +20,8 @@ Explanation: In this case, no transactions are done and the max profit = 0.
 
 */
 
+package LeetCode;
+
 public class BuyAndSellStock {
     public static int maxProfit(int[] prices) {
         int pist = 0;
