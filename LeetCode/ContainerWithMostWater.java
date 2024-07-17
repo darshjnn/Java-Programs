@@ -1,5 +1,6 @@
 /*
-Container With Most Water
+11. Container With Most Water
+
 You are given an integer array height of length n. There are n vertical lines drawn such that the
 two endpoints of the ith line are (i, 0) and (i, height[i]).
 
@@ -26,21 +27,6 @@ package LeetCode;
 
 public class ContainerWithMostWater {
 	private static int maxArea(int[] height) {
-//		int left = 0;
-//		int right = height.length - 1;
-//		int maxArea = 0;
-//		while (left <= right) {
-//			int breadth = right - left;
-//			int length = Math.min(height[left], height[right]);
-//			int area = length * breadth;
-//			maxArea = Math.max(maxArea, area);
-//			if (height[left] < height[right]) {
-//				left++;
-//			} else {
-//				right--;
-//			}
-//		}
-//		return maxArea;
 		int max = 0;
 		int left = 0;
 		int right = height.length - 1;

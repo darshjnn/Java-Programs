@@ -1,9 +1,11 @@
 /*
-Number Of Islands
+200. Number Of Islands
 
-Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the number of islands.
+Given an m x n 2D binary grid which represents a map of '1's (land) and '0's (water),
+return the number of islands.
 
-An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+An island is surrounded by water and is formed by connecting adjacent lands horizontally
+or vertically. You may assume all four edges of the grid are all surrounded by water.
 
 Example 1:
 Input: grid = [
@@ -25,20 +27,22 @@ Output: 3
 
 */
 
+package LeetCode;
+
 public class NumberOfIslands {
-    public static int island(char grid[][]) {
+    public static int island(char[][] grid) {
         int islands = 0;
         int m = grid.length;
         int n = grid[0].length;
         boolean[][] visited = new boolean[m][n];
 
-        if (n == 0 || m == 0) {
+        if (n == 0) {
             return 0;
         }
         
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (visited[i][j] == false && grid[i][j] == '1') {
+                if (!visited[i][j] && grid[i][j] == '1') {
                     visited[i][j] = true;
                     findIsland(grid, visited, i, j, m, n);
                     islands++;
@@ -53,7 +57,7 @@ public class NumberOfIslands {
         for (int[] dir : directions) {
             int x = dir[0] + i;
             int y = dir[1] + j;
-            if (x >= 0 && y >= 0 && x < m && y < n && grid[x][y] == '1' && visited[x][y] == false) {
+            if (x >= 0 && y >= 0 && x < m && y < n && grid[x][y] == '1' && !visited[x][y]) {
                 visited[x][y] = true;
                 findIsland(grid, visited, x, y, m, n);
             }

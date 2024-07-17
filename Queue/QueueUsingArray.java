@@ -2,32 +2,29 @@ package Queue;
 
 public class QueueUsingArray {
     static class Queue {
+        static int[] arr;
         static int size;
-        static int arr[];
-        static int rear = -1;
+        static int rear;
         
-        Queue(int n) {
-            arr = new int[n];
-            Queue.size = n;
+        Queue(int size) {
+            arr = new int[size];
+            Queue.size = size;
+            Queue.rear = -1;
         }
         
         public boolean isEmpty() {
             return rear == -1;
         }
         
-        // Enqueue
-        public void add(int data) {
-            if (rear == size - 1) {
-                System.out.println("Queue is full");
+        public void enqueue(int item) {
+            if (rear == (size - 1)) {
+                System.out.println("Queue is full...");
                 return;
             }
-            rear++;
-            arr[rear] = data;
+            arr[++rear] = item;
         }
         
-        // Dequeue
-        // If implemented using array, time complexity = O(n), else O(1)
-        public int remove() {
+        public int dequeue() {
             if (isEmpty()) {
                 return -1;
             }
@@ -35,7 +32,7 @@ public class QueueUsingArray {
             for (int i = 0; i < rear; i++) {
                 arr[i] = arr[i + 1];
             }
-            rear--;
+            --rear;
             return front;
         }
         
@@ -48,14 +45,16 @@ public class QueueUsingArray {
     }
     
     public static void main(String[] args) {
-        Queue q = new Queue(5);
-        q.add(1);
-        q.add(2);
-        q.add(3);
-        
-        while(!q.isEmpty()) {
-            System.out.println(q.peek());
-            q.remove();
+        Queue queue = new Queue(5);
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+        queue.enqueue(4);
+        System.out.println(queue.peek());
+        System.out.println(queue.dequeue());
+        System.out.println();
+        while (!queue.isEmpty()) {
+            System.out.println(queue.dequeue());
         }
     }
 }

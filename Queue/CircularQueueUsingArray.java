@@ -3,67 +3,70 @@
 package Queue;
 
 public class CircularQueueUsingArray {
-    static class Queue {
-        static int arr[];
+    static class CircularQueue {
+        static int[] arr;
         static int size;
-        static int rear = -1;
-        static int front = -1;
+        static int front;
+        static int rear;
         
-        Queue (int n) {
-            arr = new int[n];
-            Queue.size = n;
+        CircularQueue(int size) {
+            arr = new int[size];
+            CircularQueue.front = CircularQueue.rear = -1;
+            CircularQueue.size = size;
         }
         
-        static boolean isEmpty() {
-            return rear == -1 && front == -1;
+        public boolean isEmpty() {
+            return (front == -1 && rear == -1);
         }
         
-        static boolean isFull() {
-            return (rear + 1) % size == front;
+        public boolean isFull() {
+            return front == ((rear + 1) % size);
         }
         
-        //Enqueue
-        static void add(int data) {
-            if(isFull()) {
-                System.out.println("Queue is full...");
+        public void enqueue(int item) {
+            if (isFull()) {
+                System.out.println("Queue is Full");
                 return;
             }
-            
-            //For first element
-            if(front == -1) {
+            if (isEmpty()) {
                 front = 0;
             }
-            
             rear = (rear + 1) % size;
-            arr[rear] = data;
+            arr[rear] = item;
         }
         
-        //Dequeue - Time Complexity: O(1)
-        static int remove() {
-            if(isEmpty()) {
-                System.out.println("Queue is Empty...");
+        public int dequeue() {
+            if (isEmpty()) {
                 return -1;
             }
-            
-            int result = arr[front];
-            
-            //Single element
-            if(rear == front) {
+            int returnVal = arr[front];
+            if (rear == front) {
                 rear = front = -1;
             } else {
                 front = (front + 1) % size;
             }
-            return result;
+            return returnVal;
         }
         
-        //Peek
-        static int peek() {
-            if(isEmpty()) {
-                System.out.println("Queue is empty...");
+        public int peek() {
+            if (isEmpty()) {
                 return -1;
             }
-            
             return arr[front];
+        }
+    }
+    
+    public static void main(String[] args) {
+        CircularQueue queue = new CircularQueue(3);
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+        System.out.println(queue.dequeue());
+        queue.enqueue(4);
+        System.out.println(queue.dequeue());
+        queue.enqueue(5);
+        while (!queue.isEmpty()) {
+            System.out.println(queue.dequeue());
         }
     }
 }

@@ -1,5 +1,5 @@
 /*
-Two Sum Problem
+1. Two Sum Problem
 
 Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 
@@ -25,14 +25,14 @@ class TwoSum {
                 }
             }
         }
-        return null;
+        return new int[0];
     }
     
-    public static void main(String args[]) {
-        int arr[] = { 1, 2, 3, 4, 5 };
+    public static void main(String[] args) {
+        int[] arr = { 1, 2, 3, 4, 5 };
         int target = 5;
         for (int j = 0; j < 2; j++) {
-            System.out.print(" " + twoSum(arr, target)[j] + " ");
+	        System.out.print(" " + twoSum(arr, target)[j] + " ");
         }
     }
 }

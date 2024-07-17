@@ -1,5 +1,5 @@
 /*
-Rotting Oranges
+994. Rotting Oranges
 
 You are given an m x n grid where each cell can have one of three values:
 
@@ -26,23 +26,24 @@ Explanation: Since there are already no fresh oranges at minute 0, the answer is
 
 */
 
+package LeetCode;
+
 import java.util.*;
 
 public class RottingOranges {
     
     public static int rottenOranges(int[][] grid) {
-        int[][] visited = grid;
-        Queue<int[]> q = new LinkedList<>();
+	    Queue<int[]> q = new LinkedList<>();
         int freshOranges = 0;
         
         // Count fresh oranges and rotten oranges
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid.length; j++) {
-                if (visited[i][j] == 1) {
+                if (grid[i][j] == 1) {
                     freshOranges++;
                 }
                 
-                if (visited[i][j] == 2) {
+                if (grid[i][j] == 2) {
                     q.offer(new int[] { i, j });
                 }
             }
@@ -68,8 +69,8 @@ public class RottingOranges {
                 for (int[] direction : directions) {
                     int i = x + direction[0];
                     int j = y + direction[1];
-                    if (i >= 0 && i < grid.length && j >= 0 && j < grid.length && visited[i][j] == 1) {
-                        visited[i][j] = 2;
+                    if (i >= 0 && i < grid.length && j >= 0 && j < grid.length && grid[i][j] == 1) {
+                        grid[i][j] = 2;
                         freshOranges--;
                         q.offer(new int[] {i,j});
                     }
@@ -86,7 +87,7 @@ public class RottingOranges {
     }
     
     public static void main(String[] args) {
-        int grid[][] = { { 2, 1, 1 }, { 0, 1, 1 }, { 1, 0, 1 } };
+        int[][] grid = { { 2, 1, 1 }, { 0, 1, 1 }, { 1, 0, 1 } };
         System.out.println(rottenOranges(grid));
         
     }
