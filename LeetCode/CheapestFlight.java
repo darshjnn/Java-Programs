@@ -9,7 +9,8 @@ You are also given three integers src, dst, and k, return the cheapest price fro
 with at most k stops. If there is no such route, return -1.
 
 Example 1:
-Input: n = 4, flights = [[0,1,100],[1,2,100],[2,0,100],[1,3,600],[2,3,200]], src = 0, dst = 3, k = 1
+Input: n = 4, flights = [[0,1,100],[1,2,100],[2,0,100],[1,3,600],[2,3,200]], src = 0,
+dst = 3, k = 1
 Output: 700
 Explanation:
 The optimal path with at most 1 stop from city 0 to 3 is marked in red and has cost 100 + 600 = 700.
@@ -35,7 +36,7 @@ import java.util.*;
 
 public class CheapestFlight {
 	
-	private static int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
+	public static int cheapestPrice(int n, int[][] flights, int src, int dst, int K) {
 		int[] prices = new int[n];
 		Arrays.fill(prices, Integer.MAX_VALUE);
 		prices[src] = 0;
@@ -67,7 +68,7 @@ public class CheapestFlight {
 		int src = 0;
 		int dest = 3;
 		int k = 1;
-		int cost = findCheapestPrice(n, flights, src, dest, k);
+		int cost = cheapestPrice(n, flights, src, dest, k);
 		System.out.println(cost);
 	}
 }

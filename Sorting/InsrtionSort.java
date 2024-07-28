@@ -1,3 +1,5 @@
+package Sorting;
+
 public class InsrtionSort {
     public static void PrintArr(int arr[]){
         for(int i=0; i<arr.length; i++){

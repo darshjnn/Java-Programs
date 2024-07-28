@@ -1,6 +1,8 @@
 //To check if the array is sorted or not
 //Time Complexity: O(n)
 
+package Recursion;
+
 public class CheckIfIncreasing {
     public static boolean isSorted(int arr[], int index){
         if (index == arr.length - 1){

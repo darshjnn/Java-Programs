@@ -1,5 +1,7 @@
 //Time Complexity: O(2^n)
 
+package Recursion;
+
 public class SubsequencesOfString {
     
     public static void Subsequences(String str, int index, String newstr){

@@ -5,39 +5,38 @@ package Queue;
 import java.util.*;
 
 public class QueueUsing2Stacks {
-    static Stack<Integer> s1 = new Stack<Integer>();
-    static Stack<Integer> s2 = new Stack<Integer>();
+    static Stack<Integer> s1 = new Stack<>();
+    static Stack<Integer> s2 = new Stack<>();
     
-    boolean isEmpty() {
+    public boolean isEmpty() {
         return s1.isEmpty();
     }
-    
-    // Enqueue
-    void add(int data) {
+
+    public void add(int data) {
+        if (s1.isEmpty()) {
+            s1.push(data);
+            return;
+        }
         while (!s1.isEmpty()) {
             s2.push(s1.pop());
         }
-        
         s1.push(data);
-        
         while (!s2.isEmpty()) {
             s1.push(s2.pop());
         }
     }
     
-    // Dequeue
-    int remove() {
+    public int remove() {
         if (s1.isEmpty()) {
-            System.out.println("Queue is Empty...");
+            System.out.println("Queue is empty");
             return -1;
         }
         return s1.pop();
     }
     
-    // Peek
-    int peek() {
-        if (s1.isEmpty()) {
-            System.out.println("Queue is Empty...");
+    public int peek() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty");
             return -1;
         }
         return s1.peek();
@@ -53,5 +52,6 @@ public class QueueUsing2Stacks {
             System.out.println(q.peek());
             q.remove();
         }
+        System.out.println(q.remove());
     }
 }

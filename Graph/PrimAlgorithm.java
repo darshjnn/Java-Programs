@@ -117,5 +117,6 @@ public class PrimAlgorithm {
 		
 		createGraph(graph, arr);
 		primsAlgorithm(graph, V);
+		sc.close();
 	}
 }

@@ -1,4 +1,5 @@
 //To find first and last occurrence of an element using recursion
+package Recursion;
 
 public class Occurence {    
 
@@ -28,4 +29,3 @@ public class Occurence {
         System.out.println("Last Occurence: " + last);
     }
 }
-

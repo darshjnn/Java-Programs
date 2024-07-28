@@ -1,6 +1,8 @@
 //Move a character to the end of the string
 //Time Complexity: O(n)
 
+package Recursion;
+
 public class MoveCharToEnd {
 
     public static int count = 0; 

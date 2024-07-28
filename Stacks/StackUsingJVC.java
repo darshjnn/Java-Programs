@@ -12,9 +12,9 @@ public class StackUsingJVC {
         list.push(3);
         list.push(4);
         System.out.println(list);
-//        while (!list.isEmpty()) {
-//            System.out.println(list.peek());
-//            list.pop();
-//        }
+        while (!list.isEmpty()) {
+            System.out.println(list.peek());
+            list.pop();
+        }
     }
 }

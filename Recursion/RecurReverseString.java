@@ -1,5 +1,5 @@
 //Reverse String Using Recursion
-
+package Recursion;
 import java.util.*;
 
 public class RecurReverseString {

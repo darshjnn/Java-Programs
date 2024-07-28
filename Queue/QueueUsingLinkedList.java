@@ -70,5 +70,6 @@ public class QueueUsingLinkedList {
             System.out.println(q.peek());
             q.remove();            
         }
+        System.out.println(q.remove());
     }
 }

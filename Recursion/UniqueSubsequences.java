@@ -1,3 +1,5 @@
+package Recursion;
+
 import java.util.HashSet;
 
 public class UniqueSubsequences {
@@ -15,7 +17,7 @@ public class UniqueSubsequences {
         uniqSeq(str, index + 1, newStr + str.charAt(index), set);
         
         uniqSeq(str, index + 1, newStr, set);
-        
+
     }
     public static void main(String args[]){
         String str = "aaa";

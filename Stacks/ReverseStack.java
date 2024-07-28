@@ -5,28 +5,28 @@ package Stacks;
 import java.util.Stack;
 
 public class ReverseStack {
-    public static void pushAtBottom(Stack<Integer> stack, int value) {
+    public static void pushAtBottom(Stack<Object> stack, Object value) {
         if (stack.isEmpty()) {
             
             stack.push(value);
             return;
         }
-        int top = stack.pop();
+        Object top = stack.pop();
         pushAtBottom(stack, value);
         stack.push(top);
     }
     
-    public static void reverseStack(Stack<Integer> stack) {
+    public static void reverseStack(Stack<Object> stack) {
         if (stack.isEmpty()) {
             return;
         }
-        int top = stack.pop();
+        Object top = stack.pop();
         reverseStack(stack);
         pushAtBottom(stack, top);
     }
     
     public static void main(String[] args) {
-        Stack<Integer> list = new Stack<>();
+        Stack<Object> list = new Stack<>();
         list.push(1);
         list.push(2);
         list.push(3);
