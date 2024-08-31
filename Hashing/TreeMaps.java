@@ -11,40 +11,20 @@ Doubly Linked Lists are used to implement LinkedHashMaps.
 Red Black Trees are used to implement TreeMaps.
 */
 
-
 package Hashing;
 
 import java.util.*;
 
-public class HashMaps {
+public class TreeMaps {
 	public static void main(String[] args) {
-		HashMap<String, Integer> map = new HashMap<>();
-		
-		// Insertion
-		map.put("India", 120);
-		map.put("France", 80);
-		map.put("Germany", 50);
+		TreeMap<String, Integer> map = new TreeMap<>();
+		map.put("B", 2);
+		map.put("E", 5);
+		map.put("C", 3);
+		map.put("A", 1);
+		map.put("D", 4);
 		
 		System.out.println(map);
-		
-		// Update
-		// map.put() creates new pair if the key is not present.
-		// If the key is already present, then it updates that key with new value.
-		map.put("France", 55);
-		
-		// Search or Lookup for key
-		if (map.containsKey("India")) {
-			System.out.println("Key is present");
-		} else {
-			System.out.println("Key is not present");
-		}
-		
-		System.out.println();
-		
-		// Search or Lookup for value corresponding to yhe key
-		System.out.println(map.get("India"));
-		System.out.println(map.get("Indonesia"));
-		
 		System.out.println();
 		
 		// Iterate
@@ -59,10 +39,5 @@ public class HashMaps {
 		for (String key : keys) {
 			System.out.println(key + " : " + map.get(key));
 		}
-		
-		System.out.println();
-		
-		// Removing key
-		map.remove("India");
 	}
 }
