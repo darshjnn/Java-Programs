@@ -28,6 +28,8 @@ public class ListNode {
 }
 */
 
+package LeetCode;
+
 public class DeleteNthNodeFromLast {
     public class ListNode {
         int val;
