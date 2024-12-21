@@ -172,6 +172,7 @@ public class CreatingBST {
 			paths.remove(paths.size() - 1);
 		}
 
+		
 		// Validate a Binary Search Tree
 		public boolean isValidBST(Node root, Node min, Node max) {
 			if (root == null) {

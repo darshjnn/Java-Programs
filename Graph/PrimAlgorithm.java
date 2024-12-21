@@ -1,122 +1,91 @@
 /*
-MST stands for Minimum Spanning Tree here.
+Prim Algorithm
+
+A minimum spanning tree (MST) or minimum weight spanning tree is a subset of the edges of a
+connected, edge-weighted undirected graph that connects all the vertices together, without any
+cycles and with the minimum possible total edge weight.
+
 Time Complexity: E(logE)
+
 */
 
 package Graph;
 
 import java.util.*;
 
+import java.util.ArrayList;
+
 public class PrimAlgorithm {
-	static class Edge {
-		int source;
-		int destination;
-		int weight;
-		
-		public Edge(int source, int destination, int weight) {
-			this.source = source;
-			this.destination = destination;
-			this.weight = weight;
-		}
-	}
-	
-	private static void createGraph(ArrayList<Edge>[] graph, int[][] arr) {
-		for (int i = 0; i < graph.length; i++) {
+	public static void createGraph(ArrayList<Edge>[] graph, int V) {
+		for (int i = 0; i < V; i++) {
 			graph[i] = new ArrayList<>();
 		}
 		
-		for (int i = 0; i < arr.length; i++) {
-			for (int j = 0; j < arr[i].length; j++) {
-				if (arr[i][j] != 0) {
-					graph[i].add(new Edge(i, j, arr[i][j]));
-				}
-			}
-		}
-		System.out.println();
-		System.out.println("Entered Graph is:");
-		System.out.println("Source Destination Weight");
+		graph[0].add(new Edge(0, 1, 10));
+		graph[0].add(new Edge(0, 2, 15));
+		graph[0].add(new Edge(0, 3, 30));
 		
-		for (ArrayList<Edge> edges : graph) {
-			for (Edge e : edges) {
-				System.out.println("\t" + e.source + "\t\t" + e.destination + "\t\t" + e.weight);
-			}
-		}
-		System.out.println();
+		graph[1].add(new Edge(1, 0, 10));
+		graph[1].add(new Edge(1, 3, 40));
+		
+		graph[2].add(new Edge(2, 0, 15));
+		graph[2].add(new Edge(2, 3, 50));
+		
+		graph[3].add(new Edge(3, 1, 40));
+		graph[3].add(new Edge(3, 2, 50));
 	}
 	
-	public static class Pair implements Comparable<Pair> {
-		int source;
-		int destination;
-		int cost;
-		
-		public Pair(int source, int destination, int cost) {
-			this.source = source;
-			this.cost = cost;
-			this.destination = destination;
-		}
-		
-		public int compareTo(Pair p2) {
-			return this.cost - p2.cost; // Ascending
-		}
-	}
-	
-	private static void primsAlgorithm(ArrayList<Edge>[] graph, int V) {
-		boolean[] visited = new boolean[V];
+	public static void primAlgo(ArrayList<Edge>[] graph, int V) {
+		boolean[] vis = new boolean[V];
 		PriorityQueue<Pair> pq = new PriorityQueue<>();
+		ArrayList<Edge> mst = new ArrayList<>();
+		int mstCost = 0;
 		
-		int MSTcost = 0;
-		ArrayList<Edge> edge = new ArrayList<>();
-		pq.add(new Pair(0, 0, 0));
+		pq.offer(new Pair(0, 0, 0));
 		while (!pq.isEmpty()) {
-			Pair curr = pq.remove();
-			if (!visited[curr.destination]) {
-				visited[curr.destination] = true;
-				MSTcost += curr.cost;
-				edge.add(new Edge(curr.source, curr.destination, curr.cost));
+			Pair curr = pq.poll();
+			if (!vis[curr.dest]) {
+				vis[curr.dest] = true;
 				
-				for (Edge e : graph[curr.destination]) {
-					if (!visited[e.destination]) {
-						pq.add(new Pair(e.source, e.destination, e.weight));
+				mstCost += curr.wt;
+				mst.add(new Edge(curr.src, curr.dest, curr.wt));
+				
+				for (Edge e : graph[curr.src]) {
+					if (!vis[e.dest]) {
+						pq.offer(new Pair(e.src, e.dest, e.wt));
 					}
 				}
 			}
 		}
+		
 		System.out.println("Minimum Spanning Tree:");
 		System.out.println("Source Destination Weight");
-		for (Edge e : edge) {
-			System.out.println("\t" + e.source + "\t\t" + e.destination + "\t\t" + e.weight);
+		for (Edge e : mst) {
+			System.out.println("\t" + e.src + "\t\t" + e.dest + "\t\t" + e.wt);
 		}
-		System.out.println("Minimum cost: " + MSTcost);
+		System.out.println("Minimum cost: " + mstCost);
 	}
 	
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Enter the number of vertices: ");
-		int V = sc.nextInt();
-		int[][] arr = new int[V][V];
-		
-		do {
-			System.out.println();
-			System.out.print("Enter Source: ");
-			int source = sc.nextInt();
-			System.out.print("Enter Destination: ");
-			int destination = sc.nextInt();
-			System.out.print("Enter cost: ");
-			int cost = sc.nextInt();
-			System.out.println();
-			if (source < V && destination < V) {
-				arr[source][destination] = cost;
-			} else {
-				System.out.println("Enter valid source or destination...");
-			}
-			System.out.print("Hit 0 to exit, else enter any number to continue: ");
-		} while (sc.nextInt() != 0);
-		
+		int V = 4;
 		@SuppressWarnings("unchecked")
 		ArrayList<Edge>[] graph = new ArrayList[V];
+		createGraph(graph, V);
 		
-		createGraph(graph, arr);
-		primsAlgorithm(graph, V);
-		sc.close();
+		primAlgo(graph, V);
+	}
+	
+	public static class Pair implements Comparable<Pair> {
+		int src, dest, wt;
+		
+		public Pair(int src, int dest, int wt) {
+			this.src = src;
+			this.dest = dest;
+			this.wt = wt;
+		}
+		
+		public int compareTo(Pair p) {
+			return this.wt - p.wt;  // For ascending sorting
+		}
 	}
 }

@@ -3,26 +3,26 @@ package Sorting;
 
 public class MergeSort {
     public static void conquer(int[] arr, int si, int mid, int ei) {
-        int indx1 = si;
-        int indx2 = mid + 1;
+        int idx1 = si;
+        int idx2 = mid + 1;
         int[] merged = new int[ei - si + 1];
 
         int x = 0;
         //O(n)
-        while (indx1 <= mid && indx2 <= ei) {
-            if (arr[indx1] >= arr[indx2]) {
-                merged[x++] = arr[indx2++];
+        while (idx1 <= mid && idx2 <= ei) {
+            if (arr[idx1] >= arr[idx2]) {
+                merged[x++] = arr[idx2++];
             } else {
-                merged[x++] = arr[indx1++];
+                merged[x++] = arr[idx1++];
             }
         }
 
-        while (indx1 <= mid) {
-            merged[x++] = arr[indx1++];
+        while (idx1 <= mid) {
+            merged[x++] = arr[idx1++];
         }
 
-        while (indx2 <= ei) {
-            merged[x++] = arr[indx2++];
+        while (idx2 <= ei) {
+            merged[x++] = arr[idx2++];
         }
 
         for (int i = 0, j = si; i < merged.length; i++, j++) {
