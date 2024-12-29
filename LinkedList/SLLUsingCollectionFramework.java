@@ -1,12 +1,15 @@
-//Single Linked List using collection framework
+/*
+Single Linked List using Collection Framework
+
+*/
 
 package LinkedList;
 
 import java.util.LinkedList;
 
-public class SingleLLusingCollecFramework {
-    public static void main(String args[]){
-        LinkedList<String> list = new LinkedList<String>();
+public class SLLUsingCollectionFramework {
+    public static void main(String[] args){
+        LinkedList<String> list = new LinkedList<>();
         
         list.addFirst("a");
         list.addFirst("is");

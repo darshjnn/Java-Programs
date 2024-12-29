@@ -1,75 +1,71 @@
+/*
+Double Linked List Class
+
+*/
+
 package LinkedList;
 
+@SuppressWarnings("DuplicatedCode")
 public class DoubleLinkedList {
-	public Node head;
-	public Node tail;
-	public int size;
+	Node head, tail;
+	int size;
 	
-	
-	DoubleLinkedList() {
+	public DoubleLinkedList() {
+		this.head = null;
+		this.tail = null;
 		this.size = 0;
 	}
 	
-	public class Node {
-		int data;
-		Node next;
-		Node prev;
-		
-		Node(int data) {
-			this.data = data;
-			this.next = null;
-			this.prev = null;
-			size++;
-		}
-	}
-	
-	// Add at Start
+	// Add element at Start
 	public void addStart(int data) {
 		Node newNode = new Node(data);
 		++this.size;
+		
 		if (this.head == null) {
 			this.head = this.tail = newNode;
 			return;
 		}
+		
 		newNode.next = this.head;
 		this.head.prev = newNode;
-		head = newNode;
+		this.head = newNode;
 	}
 	
-	// Add at End
+	// Add element at Last
 	public void addEnd(int data) {
 		Node newNode = new Node(data);
+		++this.size;
+		
 		if (this.head == null) {
-			addStart(data);
+			this.head = this.tail = newNode;
 			return;
 		}
-		++this.size;
-		Node temp = this.head;
-		while (temp.next != null) {
-			temp = temp.next;
-		}
-		temp.next = newNode;
-		newNode.prev = temp;
+		
+		newNode.prev = this.tail;
+		this.tail.next = newNode;
 		this.tail = newNode;
 	}
 	
-	// Add in Middle
-	public void addMid(int index, int data) {
+	// Add element in Middle
+	public void addMid(int data, int index) {
 		Node newNode = new Node(data);
-		if (this.head == null || index <= 0) {
-			addStart(data);
-			return;
-		}
-		if (index >= this.size) {
-			addEnd(data);
-			return;
-		}
 		++this.size;
-		Node temp = this.head;
+		
+		if (this.head == null || index <= 0) {
+			this.head = this.tail = newNode;
+			return;
+		}
+		
+		if (index >= this.size) {
+			this.addEnd(data);
+			return;
+		}
+		
 		int i = 0;
+		Node temp = this.head;
 		while (i < (index - 1)) {
 			temp = temp.next;
-			i++;
+			++i;
 		}
 		newNode.prev = temp;
 		newNode.next = temp.next;
@@ -77,47 +73,52 @@ public class DoubleLinkedList {
 		temp.next = newNode;
 	}
 	
-	// Remove from Start
+	// Remove element from Start
 	public int removeStart() {
 		if (this.head == null) {
+			System.out.println("List is empty...");
 			return Integer.MIN_VALUE;
-		}
-		--this.size;
-		if (this.size == 1) {
+		} else if (this.size == 1) {
+			this.size = 0;
 			int returnVal = this.head.data;
 			this.head = this.tail = null;
 			return returnVal;
 		}
+		
+		--this.size;
 		int returnVal = this.head.data;
 		this.head = this.head.next;
 		this.head.prev = null;
 		return returnVal;
 	}
 	
-	// Remove from End
+	// Remove element from End
 	public int removeEnd() {
-		if (this.head == null) {
-			return Integer.MAX_VALUE;
+		if (this.head == null || this.size == 1) {
+			return this.removeStart();
 		}
-		if (this.size == 1) {
-			return removeStart();
-		}
+		
 		--this.size;
 		Node temp = this.head;
 		while (temp.next.next != null) {
 			temp = temp.next;
 		}
-		int returnVal = temp.data;
+		int returnVal = temp.next.data;
 		temp.next.prev = null;
 		temp.next = null;
 		return returnVal;
 	}
 	
-	// Print Elements
-	public void print() {
+	// Print elements
+	public void printList() {
+		if (this.head == null) {
+			System.out.println("List is empty...");
+			return;
+		}
+		
 		Node temp = this.head;
 		while (temp != null) {
-			System.out.print(temp.data + " ");
+			System.out.print(temp.data + "  ");
 			temp = temp.next;
 		}
 		System.out.println();
@@ -125,10 +126,15 @@ public class DoubleLinkedList {
 	
 	// Reverse the Linked List
 	public void reverse() {
+		if (this.head == null) {
+			System.out.println("List is empty...");
+			return;
+		}
+		
 		this.tail = this.head;
 		Node curr = this.head;
-		Node prev = null;
-		Node next;
+		Node prev = null, next;
+		
 		while (curr != null) {
 			next = curr.next;
 			curr.next = prev;
@@ -137,20 +143,5 @@ public class DoubleLinkedList {
 			curr = next;
 		}
 		this.head = prev;
-	}
-	
-	public static void main(String[] args) {
-		DoubleLinkedList list = new DoubleLinkedList();
-		list.addStart(4);
-		list.addStart(3);
-		list.addStart(2);
-		list.addStart(1);
-		list.addEnd(5);
-		list.addMid(3, 45);
-		list.print();
-		System.out.println(list.removeEnd());
-		list.print();
-		list.reverse();
-		list.print();
 	}
 }

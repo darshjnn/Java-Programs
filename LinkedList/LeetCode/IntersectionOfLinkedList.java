@@ -56,66 +56,45 @@ Explanation: The two lists do not intersect, so return null.
 
 */
 
-package LeetCode;
+package LinkedList.LeetCode;
+
+import LinkedList.Node;
+import LinkedList.SingleLinkedList;
 
 public class IntersectionOfLinkedList {
-	Node head;
-	
-	static class Node {
-		int data;
-		Node next;
-		
-		Node(int data) {
-			this.data = data;
-			this.next = null;
+	@SuppressWarnings("ALL")
+	public static int getIntersectionNode(Node head1, Node head2) {
+		int len1 = 0, len2 = 0;
+		Node temp1 = head1;
+		Node temp2 = head2;
+		while (temp1 != null) {
+			++len1;
+			temp1 = temp1.next;
 		}
-	}
-	
-	static class SingleLinkedList {
-		Node head;
-		
-		SingleLinkedList() {
-			this.head = null;
+		while (temp2 != null) {
+			++len2;
+			temp2 = temp2.next;
 		}
 		
-		// Add at Start
-		public void addStart(int data) {
-			if (this.head == null) {
-				this.head = new Node(data);
-				return;
+		if (len1 > len2) {
+			for (int i = 0; i < (len1 - len2); i++) {
+				head1 = head1.next;
 			}
-			Node newNode = new Node(data);
-			newNode.next = this.head;
-			this.head = newNode;
+		} else if (len2 > len1) {
+			for (int i = 0; i < (len2 - len1); i++) {
+				head2 = head2.next;
+			}
 		}
 		
-		// Add at End
-		public void addEnd(int data) {
-			if (this.head == null) {
-				this.head = new Node(data);
-				return;
-			}
-			Node newNode = new Node(data);
-			Node temp = this.head;
-			while (temp.next != null) {
-				temp = temp.next;
-			}
-			temp.next = newNode;
+		while (head1 != head2) {
+			head1 = head1.next;
+			head2 = head2.next;
 		}
 		
-		// Print
-		public void print() {
-			if (this.head == null) {
-				System.out.println("Empty");
-				return;
-			}
-			Node temp = this.head;
-			while (temp != null) {
-				System.out.print(temp.data + " ");
-				temp = temp.next;
-			}
-			System.out.println();
+		if (head1 != null) {
+			return head1.data;
 		}
+		return 0;
 	}
 	
 	public static void main(String[] args) {
@@ -125,15 +104,34 @@ public class IntersectionOfLinkedList {
 		list1.addEnd(3);
 		Node newNode = new Node(4);
 		list1.head.next.next.next = newNode;
-		list1.addEnd(5);
-		list1.addEnd(6);
-		list1.print();
+		newNode.next = new Node(5);
+		newNode.next.next = new Node(6);
+		list1.size += 2;
+		list1.printList();
 		
 		SingleLinkedList list2 = new SingleLinkedList();
 		list2.addStart(10);
 		list2.addEnd(20);
 		list2.addEnd(30);
 		list2.head.next.next.next = newNode;
-		list2.print();
+		list2.printList();
+		
+		System.out.println(getIntersectionNode(list1.head, list2.head));
 	}
 }
+
+/*
+Brute force Approach:
+	Node temp1 = head1;
+	while (temp1 != null) {
+		Node temp2 = head2;
+		while (temp2 != null) {
+			if (temp1.data == temp2.data) {
+				return temp2.data;
+			}
+			temp2 = temp2.next;
+		}
+		temp1 = temp1.next;
+	}
+	return 0;
+*/
